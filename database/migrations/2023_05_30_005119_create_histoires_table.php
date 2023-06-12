@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('titre');
             $table->string('genre');
             $table->text('resume');
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('famille_histoire_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('famille_histoire_id')->references('id')->on('famille_histoires');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

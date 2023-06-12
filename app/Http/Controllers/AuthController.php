@@ -13,13 +13,14 @@ class AuthController extends Controller
     // Register
     public function register(Request $request ) {
         $fields = $request->validate([
+            'email' => 'required|string',
             'name' => 'required|string',
             'password' => 'required|string|confirmed',
             'role_id' => 'required|integer',
         ]);
         $user =  User::create([
             'name' => $fields['name'],
-            'email' => "admin@gmail.com",
+            'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
             'role_id' => $fields['role_id'],
              
@@ -27,13 +28,13 @@ class AuthController extends Controller
         $id = $user->id;
         $token = $user->createToken('myapptoken')->plainTextToken;
         $response = [
-            // 'user' =>  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]),
+            'user' =>  Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]),
             'user' => $user,
             'token' => $token
         ];
 
-        // return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
-        return response($response, 201);
+         return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
+        //return response($response, 201);
     }
 
      public function login(Request $request ) {

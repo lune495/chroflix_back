@@ -18,6 +18,8 @@ use App\Http\Controllers\AuthController;
 Route::get('/histoires',[HistoireController::class, 'index']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
+Route::post('/paiement', 'PaymentController@processPayment');
+
 Route::group(['middleware' => ['auth:sanctum']],function()
  {
     //return $request->user();
