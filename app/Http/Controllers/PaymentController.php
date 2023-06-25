@@ -7,10 +7,12 @@ use App\Services\PayTechService;
 
 class PaymentController extends Controller
 {
-    //
+    public $apiSecret  = '5f7c2f342fb550d8ddfd8aa6a88cd1157466e20c68163c2864fab2cb12e9f4fb';
+    public $apiKey = 'f6f991952e622ca2145b3bc33539c1f99b55ac4874d6137f05938abda48d6e2c';
     public function __construct(PayTechService $payTechService)
     {
-        $this->payTechService = $payTechService;
+
+        $this->payTechService = $payTechService($apiSecret,$apiKey);
     }
 
     public function processPayment(Request $request)
@@ -20,7 +22,6 @@ class PaymentController extends Controller
             'amount' => 'required|numeric',
             // Ajoutez d'autres règles de validation selon vos besoins
         ]);
-
         // Appeler le service PayTech pour effectuer la demande de paiement
         $paymentResponse = $this->payTechService->createPayment($validatedData);
 

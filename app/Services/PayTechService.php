@@ -7,6 +7,9 @@ use GuzzleHttp\Client;
 class PayTechService
 {
     protected $client;
+    // const apiSecret  = '5f7c2f342fb550d8ddfd8aa6a88cd1157466e20c68163c2864fab2cb12e9f4fb';
+    // const apiKey = 'f6f991952e622ca2145b3bc33539c1f99b55ac4874d6137f05938abda48d6e2c';
+
     //protected $apiKey; // Clé d'API PayTech SN
     /**
      * @var string
@@ -17,14 +20,7 @@ class PayTechService
     //const URL = "http://localhost:5008";//todo
     const MOBILE_CANCEL_URL = "https://paytech.sn/mobile/cancel";
     const MOBILE_SUCCESS_URL = "https://paytech.sn/mobile/success";
-    /**
-     * @var string
-     */
-    private $apiKey;
-    /**
-     * @var string
-     */
-    private $apiSecret;
+    
     /**
      * @var array
      */
@@ -44,12 +40,13 @@ class PayTechService
     private $isMobile = false;
 
     private $currency = 'XOF';
-
     private $refCommand = '';
+    private $apiKey = '';
+    private $apiSecret = '';
 
     private $notificationUrl = [];
 
-    public function __construct()
+    public function __construct($apiSecret,$apiKey)
     {
         $this->setApiKey($apiKey);
         $this->setApiSecret($apiSecret);

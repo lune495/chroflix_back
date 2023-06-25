@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HistoireController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -18,7 +19,9 @@ use App\Http\Controllers\AuthController;
 Route::get('/histoires',[HistoireController::class, 'index']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/paiement', 'PaymentController@processPayment');
+Route::post('/paiement', [PaymentController::class,'processPayment']);
+Route::get('/payment/checkout', 'PaymentController@checkout');
+Route::get('', 'PaymentController@checkout');
 
 Route::group(['middleware' => ['auth:sanctum']],function()
  {
