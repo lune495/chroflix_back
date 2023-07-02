@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Histoire extends Model
+class Paragraphe extends Model
 {
     use HasFactory;
 
-    public function chapitres()
+    public  function chapitre()
     {
-        return $this->hasMany(Chapitre::class);
+        return $this->belongsTo(Chapitre::class);
     }
 }
