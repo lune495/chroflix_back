@@ -21,6 +21,8 @@ class ChapitreType extends GraphQLType
                 'titre'                     => ['type' => Type::string()],
                 'histoire_id'               => ['type' => Type::int()],
                 'histoire'                  => ['type' => GraphQL::type('Histoire')],
+                'paragraphes'               => ['type' => Type::listOf(GraphQL::type('Paragraphe')), 'description' => ''],
+
             ];
     }
 

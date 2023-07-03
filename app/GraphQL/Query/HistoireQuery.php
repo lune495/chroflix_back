@@ -38,14 +38,15 @@ class HistoireQuery extends Query
         {
             return
             [
-                'id'                     => $item->id,
-                'titre'                  => $item->titre,
-                'genre'                  => $item->genre,
-                'resume'                 => $item->resume,
-                'user_id'                => $item->user_id,
-                'user'                   => $item->user,
-                'famille_histoire'       => $item->famille_histoire,
-                'famille_histoire_id'    => $item->famille_histoire_id
+                'id'                        => $item->id,
+                'titre'                     => $item->titre,
+                'genre'                     => $item->genre,
+                'resume'                    => $item->resume,
+                'chapitres'                 => $item->chapitres,
+                'user_id'                   => $item->user_id,
+                'user'                      => $item->user,
+                'famille_histoire'          => $item->famille_histoire,
+                'famille_histoire_id'       => $item->famille_histoire_id,
             ];
         });
 

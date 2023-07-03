@@ -30,13 +30,14 @@ class ChapitreQuery extends Query
         $query = Chapitre::query();
         $query->orderBy('id', 'desc');
         $query = $query->get();
-        return $query->map(function (Role $item)
+        return $query->map(function (Chapitre $item)
         {
             return
             [
                 'id'                      => $item->id,
                 'titre'                   => $item->titre,
-                'histoire'                => $item->histoire
+                'histoire'                => $item->histoire,
+                'paragraphes'             => $item->paragraphes
             ];
         });
 

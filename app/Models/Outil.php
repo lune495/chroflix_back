@@ -27,6 +27,7 @@ class Outil extends Model
         "users"                      => " id,name,email,role{id,nom}",
         "taxes"                      => " id,value",
         "remises"                    => " id,value",
+        "famille_histoires"          => " id,nom",
         "approvisionnements"         => "id,user_id,user{name},montant,statut,numero,qte_total_appro,fournisseur_id,fournisseur{id,nom_complet,telephone,adresse},ligne_approvisionnements{id,produit_id,produit{id,designation,pa,pv,qte,famille_id,famille{id,nom}},quantity_received,created_at,created_at_fr,updated_at,updated_at_fr},created_at,created_at_fr,type_appro",
     );
 
