@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Histoire,Outil,User,Chapitre};
+use App\Models\{Histoire,Outil,User,Chapitre,Paragraphe};
 
 
 class HistoireController extends Controller
@@ -32,9 +32,10 @@ class HistoireController extends Controller
             {
                 $errors = "Renseignez le titre";
             }
-            $str_json = json_encode($request->tab_chapitres);
-            $chapitre_tabs = json_decode($str_json, true);
-            $pargraphe_tabs = json_decode($str_json, true);
+            $str_json_chapitre = json_encode($request->tab_chapitres);
+            $str_json_paragraphe = json_encode($request->tab_paragraphes);
+            $chapitre_tabs = json_decode($str_json_chapitre, true);
+            $paragraphe_tabs = json_decode($str_json_paragraphe, true);
             DB::beginTransaction();
             $item->titre = $request->titre;
             $item->genre = $request->genre;
@@ -54,7 +55,7 @@ class HistoireController extends Controller
                         $chapitre->save();
                         if($chapitre->save())
                         {
-                            foreach ($paragraphe_tabs as $paragraphe_tab) 
+                            foreach ($chapitre_tab['tab_paragraphes'] as $paragraphe_tab) 
                             {
                                 $paragraphe->chapitre_id =  $chapitre->id;
                                 $paragraphe->corps =  $paragraphe_tab['corps'];

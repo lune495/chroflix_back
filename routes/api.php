@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/histoires',[HistoireController::class, 'index']);
+// Route::get('/histoires',[HistoireController::class, 'index']);
 Route::post('/histoires',[HistoireController::class,'save']);
 Route::post('/famille_histoires',[FamilleController::class,'save']);
 Route::post('/register',[AuthController::class,'register']);

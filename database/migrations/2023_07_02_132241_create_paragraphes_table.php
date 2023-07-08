@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('paragraphes', function (Blueprint $table) {
             $table->id();
-            $table->string("corps");
+            $table->text("corps");
             $table->unsignedBigInteger('chapitre_id');
             $table->foreign('chapitre_id')->references('id')->on('chapitres');
             $table->timestamps();

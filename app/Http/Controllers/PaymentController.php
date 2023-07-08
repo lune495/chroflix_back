@@ -7,24 +7,30 @@ use App\Services\PayTechService;
 
 class PaymentController extends Controller
 {
-    public $apiSecret  = '5f7c2f342fb550d8ddfd8aa6a88cd1157466e20c68163c2864fab2cb12e9f4fb';
-    public $apiKey = 'f6f991952e622ca2145b3bc33539c1f99b55ac4874d6137f05938abda48d6e2c';
-    public function __construct(PayTechService $payTechService)
+    
+    public function __construct()
     {
-
-        $this->payTechService = $payTechService($apiSecret,$apiKey);
     }
 
     public function processPayment(Request $request)
     {
+        $payTechService = new PayTechService('5f7c2f342fb550d8ddfd8aa6a88cd1157466e20c68163c2864fab2cb12e9f4fb', '5b1d7da9c93fdc7cbbd903e6c9bcc6687357559dc6648c042c00699e557d9534');
         // Valider les données de paiement
-        $validatedData = $request->validate([
-            'amount' => 'required|numeric',
-            // Ajoutez d'autres règles de validation selon vos besoins
-        ]);
+        $data = [
+            'item_name' => 'Nom de larticle',
+            'item_price' => 100,
+            'command_name' => 'Nom de la commande',
+            'ref_command' => 'Référence de la commande 30',
+            'env' => 'test',
+            'currency' => 'XOF',
+            'ipn_url' => 'https://votre-url/ipn',
+            'success_url' => 'https://votre-url/success',
+            'cancel_url' => 'https://votre-url/cancel',
+            'custom_field' => 'Champ personnalisé'
+        ];
         // Appeler le service PayTech pour effectuer la demande de paiement
-        $paymentResponse = $this->payTechService->createPayment($validatedData);
-
+        $paymentResponse = $payTechService->createPayment($data);
+         dd($paymentResponse);
         // Vérifier si la demande de paiement a réussi
         if ($paymentResponse['success']) {
             // Rediriger l'utilisateur vers la page de paiement

@@ -36,6 +36,88 @@ class Outil extends Model
         $path='{'.$itemName.'('.$critere.'){'.$liste_attributs.'}}';
         return redirect('graphql?query='.urlencode($path));
     }
+    public static function isBinary($input)
+    {
+        // Vérifier si la chaîne est composée uniquement de 0 et 1
+        return preg_match('/^[01]+$/', $input) === 1;
+    }
+
+    //Fonction importante qui formate la chaines de caractères pour ne garder que les valeurs alpha numériques et les ponctuations
+
+    public static function donneBonFormatString($val)
+
+    {
+
+        $retour = null;
+
+        $valToReturn = null;
+
+
+
+
+        $valueToTransform = $val;
+
+        $valueToTransform = trim(preg_replace('/\s+/', ' ', $valueToTransform)); //Remplace /n /r par vide
+
+        $valueToTransform = utf8_encode($valueToTransform);
+
+        $valueToTransform = iconv('utf-8', 'latin1', $valueToTransform);
+
+
+
+
+        $estBinary = Outil::isBinary($valueToTransform);
+
+        if($estBinary == true)
+
+        {
+
+            $valToReturn = $val;
+
+        }
+
+        else
+
+        {
+
+            $valToReturn = $valueToTransform;
+
+        }
+
+
+
+
+        $sup   = '>';
+
+        $inf   = '<';
+
+        $plus  = '+';
+
+        if (strpos($valToReturn, $sup) !== false || strpos($valToReturn, $inf) !== false || strpos($valToReturn, $plus) !== false)
+
+        {
+
+            //Ne pas remplacer, car Christine a trouvé si y'a des mots avec > ou < ca les enlève
+
+            $retour = $valToReturn;
+
+        }
+
+        else
+
+        {
+
+            //Remplacer tous les caractères qui ne sont pas en latin et les espaces en vides
+
+            $retour = preg_replace('/[^\p{Latin}\d\s\p{P}]/u', '', $valToReturn);
+
+        }
+
+
+
+
+        return $retour;
+    }   
 
     public static function getResponseError(\Exception $e)
     {
