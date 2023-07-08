@@ -19,6 +19,7 @@ class ChapitreType extends GraphQLType
             [
                 'id'                        => ['type' => Type::id(), 'description' => ''],
                 'titre'                     => ['type' => Type::string()],
+                'corps'                     => ['type' => Type::string()],
                 'histoire_id'               => ['type' => Type::int()],
                 'histoire'                  => ['type' => GraphQL::type('Histoire')]
 

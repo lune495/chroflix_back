@@ -36,6 +36,7 @@ class ChapitreQuery extends Query
             [
                 'id'                      => $item->id,
                 'titre'                   => $item->titre,
+                'corps'                   => $item->corps,
                 'histoire'                => $item->histoire
             ];
         });

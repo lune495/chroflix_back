@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('chapitres', function (Blueprint $table) {
             $table->id();
             $table->string("titre")->nullable();
+            $table->text('corps')->nullable();
             $table->unsignedBigInteger('histoire_id');
             $table->foreign('histoire_id')->references('id')->on('histoires');
             $table->timestamps();
