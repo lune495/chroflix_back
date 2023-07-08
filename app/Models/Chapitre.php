@@ -13,9 +13,4 @@ class Chapitre extends Model
     {
         return $this->belongsTo(Histoire::class);
     }
-
-    public function paragraphes()
-    {
-        return $this->hasMany(Paragraphe::class);
-    }
 }

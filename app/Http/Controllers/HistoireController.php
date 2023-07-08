@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Histoire,Outil,User,Chapitre,Paragraphe};
+use App\Models\{Histoire,Outil,User,Chapitre};
 
 
 class HistoireController extends Controller
@@ -19,7 +19,6 @@ class HistoireController extends Controller
             $errors =null;
             $item = new Histoire();
             $chapitre = new Chapitre();
-            $paragraphe = new Paragraphe();
             if (!empty($request->id))
             {
                 $item = Histoire::find($request->id);
@@ -33,9 +32,7 @@ class HistoireController extends Controller
                 $errors = "Renseignez le titre";
             }
             $str_json_chapitre = json_encode($request->tab_chapitres);
-            $str_json_paragraphe = json_encode($request->tab_paragraphes);
             $chapitre_tabs = json_decode($str_json_chapitre, true);
-            $paragraphe_tabs = json_decode($str_json_paragraphe, true);
             DB::beginTransaction();
             $item->titre = $request->titre;
             $item->genre = $request->genre;
@@ -53,15 +50,6 @@ class HistoireController extends Controller
                         $chapitre->histoire_id =  $item->id;
                         $chapitre->titre =  $chapitre_tab['titre'];
                         $chapitre->save();
-                        if($chapitre->save())
-                        {
-                            foreach ($chapitre_tab['tab_paragraphes'] as $paragraphe_tab) 
-                            {
-                                $paragraphe->chapitre_id =  $chapitre->id;
-                                $paragraphe->corps =  $paragraphe_tab['corps'];
-                                $paragraphe->save();
-                            }
-                        }
                     }
                 }
                 DB::commit();
