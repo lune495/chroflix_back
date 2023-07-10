@@ -13,4 +13,8 @@ class Histoire extends Model
     {
         return $this->hasMany(Chapitre::class);
     }
+    public function commandes()
+    {
+        return $this->hasMany(Commande  ::class);
+    }
 }

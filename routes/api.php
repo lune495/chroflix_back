@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HistoireController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\AuthController;
@@ -19,10 +20,11 @@ use App\Http\Controllers\AuthController;
 */
 // Route::get('/histoires',[HistoireController::class, 'index']);
 Route::post('/histoires',[HistoireController::class,'save']);
+Route::post('/commandes',[CommandeController::class,'save']);
 Route::post('/famille_histoires',[FamilleController::class,'save']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/paiement', [PaymentController::class,'processPayment']);
+Route::post('/commande', [CommandeController::class,'save']);
 Route::get('/payment/checkout', 'PaymentController@checkout');
 Route::get('', 'PaymentController@checkout');
 

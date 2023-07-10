@@ -17,10 +17,10 @@ class PaymentController extends Controller
         $payTechService = new PayTechService('5f7c2f342fb550d8ddfd8aa6a88cd1157466e20c68163c2864fab2cb12e9f4fb', '5b1d7da9c93fdc7cbbd903e6c9bcc6687357559dc6648c042c00699e557d9534');
         // Valider les données de paiement
         $data = [
-            'item_name' => 'Nom de larticle',
-            'item_price' => 100,
-            'command_name' => 'Nom de la commande',
-            'ref_command' => 'Référence de la commande 30',
+            'item_name' => 'Passenger Vol1',
+            'item_price' => 10000,
+            'command_name' => 'COMMANDE 1',
+            'ref_command' => 'COM-000002',
             'env' => 'test',
             'currency' => 'XOF',
             'ipn_url' => 'https://votre-url/ipn',
@@ -30,7 +30,6 @@ class PaymentController extends Controller
         ];
         // Appeler le service PayTech pour effectuer la demande de paiement
         $paymentResponse = $payTechService->createPayment($data);
-         dd($paymentResponse);
         // Vérifier si la demande de paiement a réussi
         if ($paymentResponse['success']) {
             // Rediriger l'utilisateur vers la page de paiement
@@ -43,5 +42,5 @@ class PaymentController extends Controller
                 'error' => 'Erreur lors de la demande de paiement',
             ], 500);
         }
-    }
+   }
 }

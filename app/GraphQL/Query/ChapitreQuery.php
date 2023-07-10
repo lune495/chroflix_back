@@ -40,6 +40,5 @@ class ChapitreQuery extends Query
                 'histoire'                => $item->histoire
             ];
         });
-
     }
 }

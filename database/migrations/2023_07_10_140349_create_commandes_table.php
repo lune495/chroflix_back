@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ventes', function (Blueprint $table) {
+        Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->string('command_name');
-            $table->string('ref_command');
-            $table->string('currency');
-            $table->string('ipn_url')->nullable();
+            $table->string('ref_commande')->nullable();
+            $table->string('nom_commande')->nullable();
+            $table->string('env')->default('test');
+            $table->string('devise')->default('xof');
+            $table->unsignedBigInteger('histoire_id');
+            $table->foreign('histoire_id')->references('id')->on('histoires');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ventes');
+        Schema::dropIfExists('commandes');
     }
 };

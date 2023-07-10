@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vente_histoires', function (Blueprint $table) {
+        Schema::create('bibliotheques', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name');
-            $table->float('item_price');
-            $table->unsignedBigInteger('vente_id');
-            $table->foreign('vente_id')->references('id')->on('ventes');
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vente_histoires');
+        Schema::dropIfExists('bibliotheques');
     }
 };

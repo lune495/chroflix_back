@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('histoires', function (Blueprint $table) {
             $table->id();
             $table->string('titre')->nullable();
+            $table->float('prix')->default(0);
             $table->string('genre');
             $table->text('resume');
             $table->unsignedBigInteger('famille_histoire_id');
