@@ -50,8 +50,7 @@ class CommandeController extends Controller
                 // Valider les données de paiement
                 $data = [
                     'item_name' => $histoire->titre,
-                    // 'item_price' => $histoire->prix,
-                    'item_price' => 20000,
+                    'item_price' => $histoire->prix,
                     'command_name' => $item->nom_commande,
                     'ref_command' => $item->ref_commande,
                     'env' => 'test',

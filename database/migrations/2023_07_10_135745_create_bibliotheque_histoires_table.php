@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign('histoire_id')->references('id')->on('histoires');
             $table->unsignedBigInteger('bibliotheque_id');
             $table->foreign('bibliotheque_id')->references('id')->on('bibliotheques');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

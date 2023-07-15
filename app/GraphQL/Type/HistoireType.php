@@ -27,6 +27,8 @@ class HistoireType extends GraphQLType
                 'famille_histoire_id'        => ['type' => Type::int()],
                 'famille_histoires'          => ['type' => GraphQL::type('FamilleHistoire')],
                 'chapitres'                  => ['type' => Type::listOf(GraphQL::type('Chapitre')), 'description' => ''],
+                'bibliotheque_histoires'     => ['type' => Type::listOf(GraphQL::type('BibliothequeHistoire')), 'description' => '']
+
             ];
     }
 

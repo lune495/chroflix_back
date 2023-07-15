@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class BibliothequeHistoire extends Model
 {
     use HasFactory;
+
+    public  function histoire()
+    {
+        return $this->belongsTo(Histoire::class);
+    }
+
+    public  function bibliotheque()
+    {
+        return $this->belongsTo(Bibliotheque::class);
+    }
 }
