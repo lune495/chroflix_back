@@ -18,4 +18,9 @@ class BibliothequeHistoire extends Model
     {
         return $this->belongsTo(Bibliotheque::class);
     }
+
+    public  function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
