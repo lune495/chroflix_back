@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as Image;
 use App\Models\{Histoire,Outil,User,Chapitre};
 
 
@@ -34,6 +35,17 @@ class HistoireController extends Controller
             $str_json_chapitre = json_encode($request->tab_chapitres);
             $chapitre_tabs = json_decode($str_json_chapitre, true);
             DB::beginTransaction();
+            $image_name = null;
+            if($request->hasFile('image')){
+                //    $destinationPath = "images/produits";
+                   $image = $request->file("image");
+                   $image_name = $image->getClientOriginalName();
+                    $destinationPath = public_path().'/images';
+                    $image->move($destinationPath,$image_name);
+                   //Storage::disk('public')->put($image_name,file_get_contents($request->image));
+                   //$path = $request->file('image')->storeAs($destinationPath,$image_name);
+                }
+            $item->image = $image_name;
             $item->titre = $request->titre;
             $item->genre = $request->genre;
             $item->resume = $request->resume;
