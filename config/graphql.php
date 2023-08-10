@@ -85,7 +85,7 @@ return [
                 \App\GraphQL\Query\UserQuery::class,
                 \App\GraphQL\Query\HistoireQuery::class,
                 \App\GraphQL\Query\BibliothequeQuery::class,
-                \App\GraphQL\Query\BibliothequeHistoireQuery::class,
+                //\App\GraphQL\Query\BibliothequeHistoireQuery::class,
                 \App\GraphQL\Query\ChapitreQuery::class,
                 \App\GraphQL\Query\CommandeQuery::class,
                 \App\GraphQL\Query\FamilleHistoireQuery::class,
