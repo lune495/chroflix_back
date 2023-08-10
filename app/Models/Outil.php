@@ -24,7 +24,7 @@ class Outil extends Model
         "histoires"                  => " id,titre,genre,resume,user_id,user{id},famille_histoire_id,famille_histoire{id,nom}",
         "ventes"                     => " id,numero,montant,montant_ht,montant_ttc,montant_taxe,statut,montant_avec_remise,remise_total,qte,created_at,created_at_fr,taxe{id,value},client{nom_complet,telephone,adresse},montantencaisse,monnaie,user_id,user{id,name,role{id,nom}},vente_produits{id,remise,pu_net,montant_net,montant_remise,qte,prix_vente,total,produit{id,code,designation,qte,pv}}",
         "proformas"                  => " id,numero,montant,montant_ht,montant_ttc,montant_taxe,montant_avec_remise,remise_total,qte,created_at,created_at_fr,taxe{id,value},client{nom_complet,telephone,adresse},user_id,user{id,name,role{id,nom}},proforma_produits{id,remise,pu_net,montant_net,montant_remise,qte,prix_vente,total,produit{id,code,designation,qte,pv}}",
-        "users"                      => " id,name,email,role{id,nom}",
+        "users"                      => " id,nom,email,role{id,nom}",
         "commandes"                  => " id,ref_commande,nom_commande,env,devise,status,histoire{id},user{id}",
         "taxes"                      => " id,value",
         "remises"                    => " id,value",
