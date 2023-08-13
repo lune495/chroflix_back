@@ -37,7 +37,8 @@ class ChapitreQuery extends Query
                 'id'                      => $item->id,
                 'titre'                   => $item->titre,
                 'corps'                   => $item->corps,
-                'histoire'                => $item->histoire
+                'histoire'                => $item->histoire,
+                'histoire_id'             => $item->histoire_id,
             ];
         });
     }

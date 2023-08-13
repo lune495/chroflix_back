@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HistoireController;
+use App\Http\Controllers\ChapitreController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\FamilleController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\AuthController;
 */
 // Route::get('/histoires',[HistoireController::class, 'index']);
 Route::post('/histoires',[HistoireController::class,'save']);
+Route::post('/chapitres',[ChapitreController::class,'save']);
 Route::post('/commandes',[CommandeController::class,'save']);
 Route::post('/famille_histoires',[FamilleController::class,'save']);
 Route::post('/register',[AuthController::class,'register']);
