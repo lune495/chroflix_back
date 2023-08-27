@@ -18,7 +18,7 @@ class UserType extends GraphQLType
        return
             [
                 'id'                        => ['type' => Type::id(), 'description' => ''],
-                'name'                      => ['type' => Type::string()],
+                'nom'                      => ['type' => Type::string()],
                 'email'                     => ['type' => Type::string()],
                 'est_auteur'                => ['type' => Type::boolean()],
                 'role_id'                   => ['type' => Type::int()],
