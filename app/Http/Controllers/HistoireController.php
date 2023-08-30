@@ -45,7 +45,7 @@ class HistoireController extends Controller
                    //Storage::disk('public')->put($image_name,file_get_contents($request->image));
                    //$path = $request->file('image')->storeAs($destinationPath,$image_name);
                 }
-            $item->image = $image_name;
+            $item->image_couverture = $image_name;
             $item->titre = $request->titre;
             $item->genre = $request->genre;
             $item->resume = $request->resume;
