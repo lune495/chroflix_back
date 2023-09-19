@@ -21,6 +21,7 @@ class HistoireType extends GraphQLType
                 'titre'                      => ['type' => Type::string()],
                 'genre'                      => ['type' => Type::string()],
                 'resume'                     => ['type' => Type::string()],
+                'image_couverture'           => ['type' => Type::string()],
 
                 'user_id'                    => ['type' => Type::int()],
                 'user'                       => ['type' => GraphQL::type('User')],

@@ -43,6 +43,7 @@ class HistoireQuery extends Query
                 'genre'                     => $item->genre,
                 'resume'                    => $item->resume,
                 'chapitres'                 => $item->chapitres,
+                'image_couverture'          => $item->image_couverture,
                 'user_id'                   => $item->user_id,
                 'user'                      => $item->user,
                 'famille_histoire'          => $item->famille_histoire,
