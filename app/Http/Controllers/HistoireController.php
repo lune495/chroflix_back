@@ -57,11 +57,13 @@ class HistoireController extends Controller
                 $id = $item->id;
                 if($item->save())
                 {
-                    foreach ($chapitre_tabs as $chapitre_tab) 
-                    {
-                        $chapitre->histoire_id =  $item->id;
-                        $chapitre->titre =  $chapitre_tab['titre'];
-                        $chapitre->save();
+                    if(!empty($chapitre_tabs)) {
+                        foreach ($chapitre_tabs as $chapitre_tab) 
+                        {
+                            $chapitre->histoire_id =  $item->id;
+                            $chapitre->titre =  $chapitre_tab['titre'];
+                            $chapitre->save();
+                        }
                     }
                 }
                 DB::commit();
