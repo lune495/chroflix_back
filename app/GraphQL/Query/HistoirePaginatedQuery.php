@@ -39,6 +39,10 @@ class HistoirePaginatedQuery extends Query
         {
             $query->where('id', $args['id']);
         }
+        if (isset($args['user_d']))
+        {
+            $query = $query->where('user_d', $args['user_d']);
+        }
       
         $count = Arr::get($args, 'count', 20);
         $page  = Arr::get($args, 'page', 1);
@@ -46,4 +50,3 @@ class HistoirePaginatedQuery extends Query
         return $query->orderBy('created_at', 'desc')->paginate($count, ['*'], 'page', $page);
     }
 }
-

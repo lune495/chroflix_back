@@ -24,6 +24,7 @@ class HistoireQuery extends Query
             'id'                  => ['type' => Type::int()],
         ];
     }
+    
 
     public function resolve($root, $args)
     {
@@ -31,6 +32,10 @@ class HistoireQuery extends Query
         if (isset($args['id']))
         {
             $query = $query->where('id', $args['id']);
+        }
+        if (isset($args['user_d']))
+        {
+            $query = $query->where('user_d', $args['user_d']);
         }
         $query->orderBy('id', 'desc');
         $query = $query->get();
