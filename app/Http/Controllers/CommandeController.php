@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\{Commande,Outil,User,Histoire};
 use App\Services\PayTechService;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -26,13 +27,14 @@ class CommandeController extends Controller
         try 
         {
             $errors =null;
+            $user = Auth::user();
             $item = new Commande();
             if (!empty($request->id))
             {
                 $item = Commande::find($request->id);
             }
             DB::beginTransaction();
-            $item->user_id = $request->user_id;
+            $item->user_id = $user->id;
             $item->histoire_id = $request->histoire_id;
             $histoire = Histoire::find($request->histoire_id);
             if (!isset($histoire)) {

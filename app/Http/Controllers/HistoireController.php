@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
 use App\Models\{Histoire,Outil,User,Chapitre};
+use Illuminate\Support\Facades\Auth;
 
 
 class HistoireController extends Controller
@@ -18,6 +19,7 @@ class HistoireController extends Controller
         try 
         {
             $errors =null;
+            $user = Auth::user();
             $item = new Histoire();
             $chapitre = new Chapitre();
             if (!empty($request->id))
@@ -50,7 +52,7 @@ class HistoireController extends Controller
             $item->genre = $request->genre;
             $item->resume = $request->resume;
             $item->famille_histoire_id = $request->famille_histoire_id;
-            $item->user_id = $request->user_id;
+            $item->user_id = $user->id;
             if (!isset($errors)) 
             {
                 $item->save();
