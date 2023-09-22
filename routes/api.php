@@ -25,7 +25,8 @@ use App\Http\Controllers\AbonnementController;
 Route::group(['middleware' => ['auth:sanctum']],function()
  {
     //return $request->user();
-    Route::post('/histoires',[HistoireController::class,'save']);
+    Route::post('/devenir_auteur',[HistoireController::class,'devenir_auteur']);
+    Route::post('/chapitres',[ChapitreController::class,'save']);
     Route::post('/chapitres',[ChapitreController::class,'save']);
     Route::post('/commandes',[CommandeController::class,'save']);
     Route::post('/abonnement',[AbonnementController::class,'save']);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Image;
-use App\Models\{Histoire,Outil,User,Chapitre};
+use App\Models\{Histoire,Outil,User,Auteur,Chapitre};
 use Illuminate\Support\Facades\Auth;
 
 
@@ -83,9 +83,37 @@ class HistoireController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function devenir_auteur(Request $request)
     {
-        
+        try 
+        {
+            $errors =null;
+            $auth = Auth::user();
+            $item = new Auteur();
+            $user = User::find($auth->id);
+            if (isset($user)) {
+                $item->nom_user = $user->nom;
+                $item->email = $user->email;
+                $item->save();
+                if ($item->save()) {
+                    $user->auteur_id = $item->id;   
+                    $user->save();
+                    $id = $user->id;
+                    DB::commit();
+                        return  Outil::redirectgraphql("users", "id:{$id}", Outil::$queries["users"]);
+                }
+            }else {
+               $errors ="Utilisateur Introuvable";
+            }
+            if (isset($errors))
+            {
+                throw new \Exception('{"data": null, "errors": "'. $errors .'" }');
+            }
+        } catch (\Throwable $e) {
+                DB::rollback();
+                return $e->getMessage();
+        }
+
         return Histoire::all();
 
     }
